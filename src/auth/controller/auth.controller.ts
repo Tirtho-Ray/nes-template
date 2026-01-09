@@ -8,5 +8,6 @@ export class AuthController {
     @Get("user")
     getUser() {
         return this.service.login()
+        //
     }
 }
