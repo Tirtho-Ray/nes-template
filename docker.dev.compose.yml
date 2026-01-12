@@ -23,8 +23,7 @@ services:
       - "9000:9000"
     environment:
       - PORT=9000
-      # Use the SERVICE NAME 'db' and internal port 5432
-      - DATABASE_URL=postgresql://myuser:mypassword@db:5432/my_db?schema=public
+      - DATABASE_URL=postgresql://myuser:mypassword@db:5433/nest_db?schema=public
     depends_on:
       - db
     volumes:
