@@ -10,7 +10,7 @@ services:
       - POSTGRES_PASSWORD=mypassword
       - POSTGRES_DB=nest_db
     ports:
-      - "5433:5432" 
+      - "5433:5432"
     volumes:
       - postgres_data:/var/lib/postgresql/data
 
@@ -21,14 +21,15 @@ services:
     container_name: nest-api-app
     ports:
       - "9000:9000"
-    environment:
-      - PORT=9000
-      - DATABASE_URL=postgresql://myuser:mypassword@db:5433/nest_db?schema=public
+    env_file:
+      - .env
     depends_on:
       - db
     volumes:
       - .:/app
       - /app/node_modules
+    command: sh -c "npx prisma migrate dev && pnpm run start:dev"
+
 
 volumes:
   postgres_data:
